@@ -466,6 +466,9 @@ class pil_build_ext(build_ext):
                     feature.freetype_version = freetype_version
                     if dir:
                         _add_directory(self.compiler.include_dirs, dir, 0)
+                        dir = os.path.join(dir, "freetype2")
+                        if os.path.isdir(dir):
+                            _add_directory(self.compiler.include_dirs, dir, 0)
 
         if feature.want('lcms'):
             if _find_include_file(self, "lcms2.h"):
